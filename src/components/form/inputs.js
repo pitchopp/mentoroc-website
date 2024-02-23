@@ -18,11 +18,12 @@ export function TextInput({ className, label, ...props }) {
   );
 }
 
-export function SelectInput({ className, label, options, ...props }) {
+export function SelectInput({ className, label, options, placeholder, ...props }) {
   return (
     <div className={`flex flex-col ${className}`}>
       {label && <label className={`${labelSpacing}`}>{label}</label>}
-      <select className="p-2 border-2 border-gray-200 rounded-lg" {...props}>
+      <select className="p-2 border-2 border-gray-200 rounded-lg disabled:bg-gray-200" {...props}>
+        <option hidden value="">{placeholder}</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
