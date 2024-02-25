@@ -1,7 +1,6 @@
-import Form from "@/components/form";
+import Generator from "@/app/dashboard/generator";
 
 async function getProjectsData() {
-    console.log(process.env.API_URL)
     let response = await fetch(process.env.API_URL + "/courses/")
     response = await response.json();
 
@@ -18,13 +17,11 @@ export default async function page() {
 
     return (
         <main className="flex-1 flex flex-col items-center p-10 bg-gray-100">
-            <h1 className="text-4xl font-bold text-center">
+            <h1 className="text-4xl font-bold text-center mb-16">
                 Générateur de Rapport d'évaluation
             </h1>
-            <div className="mt-16 flex gap-4 w-full">
-                <Form data={data} className="flex-1" />
-                <div className="flex-1">
-                    </div>
+            <div className="w-full h-full">
+                <Generator data={data} />
             </div>
         </main>
     );
