@@ -18,7 +18,7 @@ export default async function page() {
     return (
         <main className="flex-1 flex flex-col items-center p-10 bg-gray-100">
             <h1 className="text-4xl font-bold text-center mb-16">
-                Générateur de Rapport d'évaluation
+                Générateur de Rapport d&apos;évaluation
             </h1>
             <div className="w-full h-full">
                 <Generator data={data} />
