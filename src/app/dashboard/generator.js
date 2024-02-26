@@ -36,7 +36,7 @@ export default function Generator({ data, className, ...props }) {
 
   const handleSubmit = () => {
     setLoading(true);
-    console.log(process.env.PRIVATE_API_URL + "/generate-evaluation-report/")
+    console.log(process.env.NEXT_PUBLIC_API_URL + "/generate-evaluation-report/")
     fetch(process.env.NEXT_PUBLIC_API_URL + "/generate-evaluation-report/", {
       method: "POST",
       headers: {
