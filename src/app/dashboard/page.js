@@ -3,7 +3,7 @@ import Generator from "@/app/dashboard/generator";
 
 
 async function getProjectsData() {
-    let response = await fetch(process.env.API_URL + "/courses/")
+    let response = await fetch(process.env.PRIVATE_API_URL + "/courses/")
     response = await response.json();
 
     let data = {};
