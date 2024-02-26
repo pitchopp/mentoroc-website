@@ -1,4 +1,6 @@
+export const runtime = "edge";
 import Generator from "@/app/dashboard/generator";
+
 
 async function getProjectsData() {
     let response = await fetch(process.env.API_URL + "/courses/")
