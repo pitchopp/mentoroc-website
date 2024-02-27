@@ -1,6 +1,8 @@
 import { FaHome, FaDatabase } from "react-icons/fa";
 import { FaGear, FaPowerOff } from "react-icons/fa6";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/../public/logo.png";
 
 
 const SidebarGroup = ({ children, title }) => {
@@ -26,7 +28,13 @@ const SidebarItem = ({ children, icon, href }) => {
 
 export function Sidebar({ className, ...props }) {
     return (
-        <nav className={`shadow-2xl h-screen p-6 z-50 ${className}`} {...props}>
+        <nav className={`shadow-xl h-screen w-52 p-6 z-50 ${className}`} {...props}>
+            <Link href="/">
+                <div className="w-32 mx-auto h-32">
+                    <Image src={logo} alt="Logo" className="object-cover" />
+                </div>
+                <h1 className="text-xl text-center mx-auto my-4 font-bold uppercase">Mentoroc</h1>
+            </Link>
             <SidebarGroup title="Accueil">
                 <SidebarItem href="/dashboard" icon={FaHome}>
                     Dashboard
