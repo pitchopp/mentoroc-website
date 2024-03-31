@@ -1,4 +1,3 @@
-export const runtime = "edge";
 import Generator from "@/app/dashboard/generator";
 
 
@@ -18,7 +17,7 @@ export default async function page() {
     const data = await getProjectsData();
 
     return (
-        <main className="flex-1 flex flex-col items-center p-10 bg-gray-100">
+        <main className="p-10">
             <h1 className="text-4xl font-bold text-center mb-16">
                 Générateur de Rapport d&apos;évaluation
             </h1>

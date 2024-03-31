@@ -1,8 +1,5 @@
 "use client";
 import { useState } from "react";
-import { TextInput, SelectInput } from "@/components/form/inputs";
-import { Button } from "@/components/form/buttons";
-import Spinner from "@/components/animated/spinners";
 import { Editor } from '@tinymce/tinymce-react';
 
 export default function Generator({ data, className, ...props }) {
@@ -23,7 +20,7 @@ export default function Generator({ data, className, ...props }) {
   });
 
   const handleCourseChange = (e) => {
-    setFormData({ ...formData, course: e.target.value });
+    setFormData({ ...formData, course: e.target.value, project: ""});
     setProjects(
       data[e.target.value].projects.map((project) => {
         return {
@@ -34,9 +31,8 @@ export default function Generator({ data, className, ...props }) {
     );
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     setLoading(true);
-    console.log(process.env.NEXT_PUBLIC_API_URL + "/generate-evaluation-report/")
     fetch(process.env.NEXT_PUBLIC_API_URL + "/generate-evaluation-report/", {
       method: "POST",
       headers: {
@@ -51,62 +47,79 @@ export default function Generator({ data, className, ...props }) {
     .finally(() => {
       setLoading(false);
     });
+    e.preventDefault();
   };
 
   return (
-    <div className={`w-full flex gap-8 ${className}`} {...props}>
-      <div className={`w-[40%] flex flex-col gap-4 ${className}`} {...props}>
-        <SelectInput
-          label="Parcours"
-          options={courses}
+    <div className={`w-full flex flex-wrap md:flex-nowrap gap-8 ${className}`} {...props}>
+      <form onSubmit={handleSubmit} className={`w-full md:w-[40%] flex flex-col gap-4 ${className}`} {...props}>
+        <select 
+          required
+          className="select select-bordered w-full bg-white"
           value={formData.course}
           onChange={handleCourseChange}
-          className="w-full"
-        />
-        <SelectInput
-          label="Projet"
-          options={projects}
+        >
+          <option disabled selected value="">Choisissez un parcours</option>
+          {courses.map((course) => (
+            <option key={course.value} value={course.value}>
+              {course.label}
+            </option>
+          ))}
+        </select>
+        <select 
+          required
+          className="select select-bordered w-full bg-white"
           disabled={projects.length === 0}
           value={formData.project}
           onChange={(e) =>
             setFormData({ ...formData, project: e.target.value })
           }
-          placeholder={
-            projects.length === 0 ? "Sélectionnez un parcours d'abord" : ""
-          }
-          className="w-full"
-        />
-        <TextInput
-          type="textarea"
-          label="Informations à mentionner"
-          value={formData.notes}
-          onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-          placeholder="Renseignez les informations que vous voulez intégrer au compte-rendu"
-          rows="20"
-        />
-        <Button
-          onClick={handleSubmit}
-          className="w-full h-10 text-white flex justify-center items-center"
+        >
+          <option disabled selected value="">{
+            projects.length === 0 ? "Sélectionnez d'abord un parcours d'abord" : "Choisissez un projet"
+          }</option>
+          {projects.map((course) => (
+            <option key={course.value} value={course.value}>
+              {course.label}
+            </option>
+          ))}
+        </select>
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text">Informations</span>
+          </div>
+          <textarea 
+            rows={10}
+            className="textarea textarea-bordered bg-white" 
+            placeholder="Renseignez ici les informations que vous voulez intégrer au compte-rendu."
+            value={formData.notes}
+            onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+          />
+        </label>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          disabled={loading}
         >
           {loading ? (
-            <Spinner className="size-6" spinnerColor="white" />
+            <span className="loading loading-spinner"></span>
           ) : (
             "Générer le rapport"
           )}
-        </Button>
-      </div>
-      <div className="w-[60%]">
-        <p className="mb-1">Compte-rendu</p>
+        </button>
+      </form>
+      <div className="w-full md:w-[60%]">
+        <div className="label">
+          <span className="label-text">Compte-rendu</span>
+          {loading && <span className="label-alt loading loading-spinner"></span>}
+        </div>
         <Editor
+          disabled={loading || !report}
           apiKey={process.env.NEXT_PUBLIC_TINYMCE_TOKEN}
           init={{
             height: 500,
             menubar: false,
             plugins: [
-              'advlist autolink lists link image charmap print preview anchor',
-              'searchreplace visualblocks code fullscreen',
-              'insertdatetime media table paste code help wordcount',
-              'emoticons'
             ],
             toolbar: 'undo redo | formatselect | ' +
               'bold italic backcolor | alignleft aligncenter ' +
