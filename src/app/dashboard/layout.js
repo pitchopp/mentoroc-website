@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 import { FaHome, FaDatabase } from "react-icons/fa";
-import { FaGear, FaPowerOff, FaBars, FaXmark, FaX } from "react-icons/fa6";
+import { FaGear, FaPowerOff, FaBars, FaXmark } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/../public/logo.png";
@@ -66,7 +66,7 @@ export default function DashboardLayout({ children }) {
                 onClick={() => setOpen(false)}
                 className={`${open ? "absolute inset-0 bg-black bg-opacity-50" : "hidden"} z-40 w-full h-full lg:hidden`}>
                     <button onClick={() => setOpen(false)} className="absolute top-5 right-5 text-white">
-                        <FaX className="size-5" />
+                        <FaXmark className="size-5" />
                     </button>
                 </div>
             <div className={`absolute inset-0 flex-1 lg:static overflow-scroll`}>
