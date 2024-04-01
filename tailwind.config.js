@@ -8,8 +8,8 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        light: {
-          ...require("daisyui/src/theming/themes")["light"],
+        fantasy: {
+          ...require("daisyui/src/theming/themes")["fantasy"],
           "base-100": "#f9fafb",
         }
       }
