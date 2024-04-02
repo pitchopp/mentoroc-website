@@ -2,13 +2,13 @@ import Generator from "@/app/dashboard/generator";
 
 
 async function getProjectsData() {
-    // let response = await fetch(process.env.PRIVATE_API_URL + "/courses/")
-    // response = await response.json();
+    let response = await fetch(process.env.PRIVATE_API_URL + "/courses/")
+    response = await response.json();
 
     let data = {};
-    // response.forEach(course => {
-    //     data[course.id] = course;
-    // });
+    response.forEach(course => {
+        data[course.id] = course;
+    });
     return data
 
 }
