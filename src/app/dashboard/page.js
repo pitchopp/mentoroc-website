@@ -2,7 +2,11 @@ import Generator from "@/app/dashboard/generator";
 
 
 async function getProjectsData() {
-    let response = await fetch(process.env.PRIVATE_API_URL + "/courses/")
+    let response = await fetch(process.env.PRIVATE_API_URL + "/courses/", {
+        next: {
+            revalidate: 300
+        }
+    })
     response = await response.json();
 
     let data = {};
