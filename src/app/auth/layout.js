@@ -1,7 +1,7 @@
 export const metadata = {
     title: {
-        default: "Take My Keys",
-        template: "%s | Take My Keys",
+        default: "Mentoroc",
+        template: "%s | Mentoroc",
     }
 }
 
