@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import { generateEvaluationReport } from "@/lib/api";
+import toast from "react-hot-toast";
 
 export default function Generator({ data, className, ...props }) {
   const [report, setReport] = useState("");
