@@ -38,6 +38,7 @@ export default function Generator({ data, className, ...props }) {
     generateEvaluationReport(formData.project, formData.notes).then((response) => {
       setReport(response.data.result);
     }).catch((error) => {
+      console.error(error);
       toast.error("Une erreur s'est produite lors de la génération du rapport.");
     }).finally(() => {
       setLoading(false);
