@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
+import { generateEvaluationReport } from "@/lib/api";
 
 export default function Generator({ data, className, ...props }) {
   const [report, setReport] = useState("");
@@ -33,21 +34,14 @@ export default function Generator({ data, className, ...props }) {
 
   const handleSubmit = (e) => {
     setLoading(true);
-    fetch(process.env.NEXT_PUBLIC_API_URL + "/generate-evaluation-report/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-    .then((response) => (response.json()))
-    .then(data => {
-      setReport(data);
-    })
-    .finally(() => {
+    e.preventDefault();
+    generateEvaluationReport(formData.project, formData.notes).then((response) => {
+      setReport(response.data.result);
+    }).catch((error) => {
+      toast.error("Une erreur s'est produite lors de la génération du rapport.");
+    }).finally(() => {
       setLoading(false);
     });
-    e.preventDefault();
   };
 
   return (

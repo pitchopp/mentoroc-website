@@ -79,3 +79,11 @@ export const confirmResetPassword = async (
   });
   return response;
 };
+
+export const generateEvaluationReport = async (project, notes) => {
+  const response = await api.post("/generate-evaluation-report/", {
+    project,
+    notes,
+  });
+  return response;
+}
