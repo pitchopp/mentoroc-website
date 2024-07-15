@@ -32,7 +32,7 @@ const ResetMessage = () => {
   } else if (params.get("verified") === "false") {
     return (
       <div className="text-warning text-center">
-        Votre adresse email n'est pas encore vérifiée. Veuillez vérifier votre boîte
+        Votre adresse email n&apos;est pas encore vérifiée. Veuillez vérifier votre boîte
         de réception avant de vous connecter.
       </div>
     );
