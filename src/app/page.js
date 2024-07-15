@@ -252,7 +252,7 @@ function Main() {
     <section class="text-gray-600 min-h-screen body-font text-center">
       <div class="max-w-5xl pt-52 h-full pb-24 mx-auto">
         <h1 class="text-80 text-center text-4xl font-bold text-white mb-12">
-          Générer vos rapport d'évaluation en un clic !
+          Générer vos rapport d&apos;évaluation en un clic !
         </h1>
         <h2 class="text-2xl font-4 font-semibold lh-6 ld-04 pb-11 text-gray-700 text-center">
           Mentoroc vous fera gagner du temps en générant vos rapports basés sur
@@ -264,10 +264,10 @@ function Main() {
           </p>
           <p>
             Ils respectent parfaitement le format attendu pour un rapport
-            d'évaluation OC.
+            d&apos;évaluation OC.
           </p>
           <p>
-            L'assistant connait très bien le contenu et les attentes de chaque
+            L&apos;assistant connait très bien le contenu et les attentes de chaque
             projet.
           </p>
         </div>
