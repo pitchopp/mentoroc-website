@@ -1,5 +1,7 @@
-import { Inter, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+import GlobalStateProvider from "@/components/provider";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,7 +17,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <body className={`min-h-screen antialiased ${poppins.className}`}>{children}</body>
+      <body className={`min-h-screen antialiased ${poppins.className}`}>
+        <GlobalStateProvider>
+          <Toaster position="top-right" />
+          {children}
+        </GlobalStateProvider>
+      </body>
     </html>
   );
 }
